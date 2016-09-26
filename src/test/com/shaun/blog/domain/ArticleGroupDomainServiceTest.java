@@ -16,8 +16,8 @@ public class ArticleGroupDomainServiceTest extends BaseTest{
     @Test
     public void testInsert(){
         ArticleGroup articleGroup = new ArticleGroup();
-        articleGroup.setArticlesGroupName("测试");
-        articleGroup.setDescription("第一个");
+        articleGroup.setArticlesGroupName("测试2");
+        articleGroup.setDescription("第2个");
 
         articleGroupDomainService.insertSelective(articleGroup);
     }

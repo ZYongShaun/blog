@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shaun.blog.dao.ArticleGroupDao" >
+  <resultMap id="BaseResultMap" type="com.shaun.blog.po.ArticleGroup" >
+    <id column="articlesGroupId" property="articlesGroupId" jdbcType="INTEGER" />
+    <result column="articlesGroupName" property="articlesGroupName" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="createTime" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="updateTime" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    articlesGroupId, articlesGroupName, description, createTime, updateTime
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shaun.blog.po.ArticleGroupRepository" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from articleGroup
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from articleGroup
+    where articlesGroupId = #{articlesGroupId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from articleGroup
+    where articlesGroupId = #{articlesGroupId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shaun.blog.po.ArticleGroupRepository" >
+    delete from articleGroup
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.shaun.blog.po.ArticleGroup" >
+    <selectKey resultType="java.lang.Integer" keyProperty="articlesGroupId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into articleGroup (articlesGroupName, description, createTime, 
+      updateTime)
+    values (#{articlesGroupName,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shaun.blog.po.ArticleGroup" >
+    <selectKey resultType="java.lang.Integer" keyProperty="articlesGroupId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into articleGroup
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="articlesGroupName != null" >
+        articlesGroupName,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="createTime != null" >
+        createTime,
+      </if>
+      <if test="updateTime != null" >
+        updateTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="articlesGroupName != null" >
+        #{articlesGroupName,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shaun.blog.po.ArticleGroupRepository" resultType="java.lang.Integer" >
+    select count(*) from articleGroup
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update articleGroup
+    <set >
+      <if test="record.articlesGroupId != null" >
+        articlesGroupId = #{record.articlesGroupId,jdbcType=INTEGER},
+      </if>
+      <if test="record.articlesGroupName != null" >
+        articlesGroupName = #{record.articlesGroupName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.description != null" >
+        description = #{record.description,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        createTime = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null" >
+        updateTime = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update articleGroup
+    set articlesGroupId = #{record.articlesGroupId,jdbcType=INTEGER},
+      articlesGroupName = #{record.articlesGroupName,jdbcType=VARCHAR},
+      description = #{record.description,jdbcType=VARCHAR},
+      createTime = #{record.createTime,jdbcType=TIMESTAMP},
+      updateTime = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shaun.blog.po.ArticleGroup" >
+    update articleGroup
+    <set >
+      <if test="articlesGroupName != null" >
+        articlesGroupName = #{articlesGroupName,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        createTime = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        updateTime = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where articlesGroupId = #{articlesGroupId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shaun.blog.po.ArticleGroup" >
+    update articleGroup
+    set articlesGroupName = #{articlesGroupName,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      createTime = #{createTime,jdbcType=TIMESTAMP},
+      updateTime = #{updateTime,jdbcType=TIMESTAMP}
+    where articlesGroupId = #{articlesGroupId,jdbcType=INTEGER}
+  </update>
+</mapper>

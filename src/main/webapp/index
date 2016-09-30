@@ -16,7 +16,7 @@
 <header>
     <nav id="nav">
         <ul>
-            <li><a href="/index.html">首页</a></li>
+            <li><a href="/index">首页</a></li>
             <li><a href="/articleList/" target="_blank">博客列表</a></li>
             <li><a href="/picture" target="_blank">照片</a></li>
             <li><a href="/aboutUs/" target="_blank">关于我们</a></li>

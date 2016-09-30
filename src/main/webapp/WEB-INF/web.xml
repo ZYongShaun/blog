@@ -27,7 +27,7 @@
     </servlet-mapping>
 
     <welcome-file-list>
-        <welcome-file>/index.html</welcome-file>
+        <welcome-file>/index</welcome-file>
     </welcome-file-list>
 
     <!-- 重要 post请求时候编码 -->

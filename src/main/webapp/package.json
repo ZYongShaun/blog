@@ -1,0 +1,33 @@
+{
+  "name": "blog",
+  "version": "1.0.0",
+  "description": "shaun and sugar",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ZYongShaun/blog.git"
+  },
+  "keywords": [
+    "shaun",
+    "sugar",
+    "blog"
+  ],
+  "author": "shaun",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ZYongShaun/blog/issues"
+  },
+  "homepage": "https://github.com/ZYongShaun/blog#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-clean": "^0.3.2",
+    "gulp-minify-css": "^1.2.4",
+    "gulp-rev": "^7.1.2",
+    "gulp-rev-collector": "^1.0.5",
+    "gulp-uglify": "^2.0.0",
+    "gulp-watch-path": "^0.1.0"
+  }
+}
